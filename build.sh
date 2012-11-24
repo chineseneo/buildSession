@@ -11,3 +11,4 @@ java -classpath 'junit-4.10.jar:./' org.junit.runner.JUnitCore HelloWorldTest
 echo "packaging..."
 jar cfm build.jar manifest.txt HelloWorld.class 
 echo "All done!"
+java -jar build.jar
