@@ -40,7 +40,7 @@
   </target>
   <target name ="all" depends ="jar"/>
     <target name="jar" depends = "test">
-        <jar destfile="build.jar" basedir="./">
+        <jar destfile="build.jar" basedir="./out">
             <manifest>
                 <attribute name="Main-Class" value="HelloWorld"/>
             </manifest>
