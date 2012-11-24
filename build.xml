@@ -1,0 +1,49 @@
+<project name ="biblioteca" default="all">
+  <property name="outdir" value="out" />
+  <property name="srcdir" value="src" />
+  <property name="testdir" value="test" />
+  <property name="lib" value="lib/junit-4.10.jar" />
+  <path id="classpath.base">
+    <pathelement location = "${outdir}"/>
+  </path>
+  <path id="classpath.test">
+    <pathelement location="${lib}" />
+    <pathelement location="${testdir}" />
+    <path refid="classpath.base" />
+  </path>
+  <target name="clean">
+    <delete dir= "${outdir}">
+       <fileset dir="." includes = "*.jar" />
+    </delete>
+  </target>
+  <target name = "init" depends = "clean">
+    <mkdir dir= "${outdir}"/>
+  </target>
+  <target name="compile" depends = "clean,init"
+        description="compile the source " >
+    <javac srcdir="${srcdir}" destdir="${outdir}"/>
+  </target>
+  <target name="compile-test" depends="compile">
+    <javac srcdir="${testdir}"
+           destdir="${outdir}">
+      <classpath refid="classpath.test"/>
+    </javac>
+  </target>
+  <target name="test" depends="compile-test">
+    <junit>
+      <classpath refid="classpath.test" />
+      <formatter type="brief" usefile="false" />
+      <batchtest>
+		<fileset dir="${outdir}" includes="test/*Test.class" />
+      </batchtest>    
+    </junit>
+  </target>
+  <target name ="all" depends ="jar"/>
+    <target name="jar" depends = "test">
+        <jar destfile="build.jar" basedir="./">
+            <manifest>
+                <attribute name="Main-Class" value="HelloWorld"/>
+            </manifest>
+        </jar>
+    </target>
+</project>	
