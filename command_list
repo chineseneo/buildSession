@@ -1,0 +1,7 @@
+javac HelloWorld.java
+
+javac -classpath 'junit-4.10.jar:./' HelloWorldTest.java
+
+java -classpath 'junit-4.10.jar:./' org.junit.runner.JUnitCore HelloWorldTest
+
+jar cfm build.jar manifest.txt HelloWorld.class
