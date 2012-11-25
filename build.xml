@@ -34,7 +34,7 @@
       <classpath refid="classpath.test" />
       <formatter type="brief" usefile="false" />
       <batchtest>
-		<fileset dir="${outdir}" includes="test/*Test.class" />
+		<fileset dir="${outdir}" includes="*Test.class" />
       </batchtest>    
     </junit>
   </target>
